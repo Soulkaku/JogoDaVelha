@@ -1,0 +1,29 @@
+{
+  "name": "jogodavelha",
+  "version": "1.0.0",
+  "description": "Feito com Socket.io, node.js e express",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Soulkaku/JogoDaVelha.git"
+  },
+  "keywords": [
+    "Socket.io",
+    "git",
+    "express",
+    "node.js"
+  ],
+  "author": "Thiago Gonçalves",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Soulkaku/JogoDaVelha/issues"
+  },
+  "homepage": "https://github.com/Soulkaku/JogoDaVelha#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  }
+}
