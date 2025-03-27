@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "Feito com Socket.io, node.js e express",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "dev": "nodemon ./server.js"
   },
   "repository": {
     "type": "git",
