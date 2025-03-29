@@ -1,3 +1,25 @@
-p {
-    font-size: 46;
+body {
+    font-family: "Poppins";
+    
+    display: flex;
+    background-color: #000000;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container {
+    width: 300px;
+    height: fit-content;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 5px;
+    align-items: center;
+    position: relative;    
+}
+
+
+.formUserClass {
+    text-align: center;
+    align-items: center;
 }
