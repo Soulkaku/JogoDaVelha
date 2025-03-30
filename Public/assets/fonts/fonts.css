@@ -1,1 +1,4 @@
-@import url(./Poppins/poppins.css);
+@font-face {
+    font-family: 'Poppins';
+    src: url(./Poppins/Poppins-Regular.ttf);
+}
