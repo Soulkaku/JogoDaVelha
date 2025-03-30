@@ -1,25 +1,48 @@
 body {
-    font-family: "Poppins";
-    
+    font-family: 'poppins';
+    text-align: center;
     display: flex;
     background-color: #000000;
     justify-content: center;
     align-items: center;
-
+    height: 100vh;
+    margin: 0;
 }
 
 .container {
-    width: 300px;
-    height: fit-content;
-    background-color: white;
+    width: 750px;
+    height: 150px auto;
+    background-color: black;
     border-radius: 1rem;
-    padding: 5px;
-    align-items: center;
-    position: relative;    
+    border: 2px solid white;
+    
 }
 
+h1 {
+    color: #ffffff;
+}
 
-.formUserClass {
+.create-user {
+    justify-content: center;
+    display: flex;
+    gap: 5px;
+    width: 100%;
+}
+
+.username {
+    width: 400px;
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid gray;
     text-align: center;
-    align-items: center;
+}
+
+.submitButton {
+    width: fit-content;
+    height: 30px;
+    border-radius: 5px;
+    background-color: white;
+    border: 2px solid gray;
+
+    cursor: pointer;
 }
