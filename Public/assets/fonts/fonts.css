@@ -2,3 +2,9 @@
     font-family: 'Poppins';
     src: url(./Poppins/Poppins-Regular.ttf);
 }
+
+@font-face {
+    font-family: 'Poppins';
+    src: url(./Poppins/Poppins-Bold.ttf);
+    font-weight: bold;
+}
