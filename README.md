@@ -1,9 +1,9 @@
 # WebSocket - Jogo da velha.
 
-- [ ] Criar Repositorio
-- [ ] Configurar o ambiente Node.js e Express 
+- [x] Criar Repositorio
+- [x] Configurar o ambiente Node.js e Express 
 - [ ] Criar a estrutura do projeto  
-- [ ] Implementar o servidor WebSocket   
+- [x] Implementar o servidor WebSocket   
 - [ ] Implementar lógica do jogo (controle de jogadas e vencedor)  
 - [ ] Testar jogo localmente
 - [ ] Hospedar o jogo online (Heroku, Vercel, etc.)
