@@ -17,7 +17,19 @@ h1 {
     color: white;
     font-weight: bold;
 }
-h2 {
+#user1 {
+    position: absolute;
+    top: 0%;
+    left: 100vh;
+    color: white;
+    font-weight: bold;
+}
+
+#user2 {
+    position: relative;
+    top: 0%;
+    left: 100vh;
+    display: flex;
     color: white;
     font-weight: bold;
 }
