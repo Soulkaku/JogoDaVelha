@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "jest",
-    "dev": "nodemon SRC/Sockets/socketBack.js"
+    "dev": "nodemon SRC/socketBack.js"
   },
   "repository": {
     "type": "git",

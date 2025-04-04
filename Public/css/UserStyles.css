@@ -28,22 +28,28 @@ h1 {
     display: flex;
     gap: 5px;
     width: 100%;
+    padding-bottom: 5px;
+
 }
 
-.username {
+.username, .room {
     width: 400px;
     height: 30px;
     border-radius: 5px;
-    border: 2px solid gray;
+    gap: 5px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .submitButton {
     width: fit-content;
-    height: 30px;
+    height: 60px;
     border-radius: 5px;
     background-color: white;
     border: 2px solid gray;
 
     cursor: pointer;
 }
+

@@ -1,34 +1,47 @@
 const socket = io();
 
-var boxes = document.getElementsByClassName("box");
+const boxes = document.getElementsByClassName("box");
+const firstUser = document.getElementById("user1");
+const username = sessionStorage.getItem("username");
 
-const winPatterns = []
+firstUser.textContent = `X-player: ${username}`;
 
+const board = ["", "", "", "", "", "", "", "", ""]; // Representação do tabuleiro
+let currentPlayer = "X"; // Começa com "X"
 
-// function findposition() {
-//     const position = this.getAttribute("data-id");
+const winPatterns = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], // Linhas
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], // Colunas
+    [0, 4, 8], [2, 4, 6] // Diagonais
+];
 
-//     // alert(position);
-
-//     return position;
-// }
+function checkWin() {
+    for (let pattern of winPatterns) {
+        const [a, b, c] = pattern;
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+            alert(`${board[a]} venceu!`);
+            return true;
+        }
+    }
+    return false;
+}
 
 function markBox() {
     const position = this.getAttribute("data-id");
+    
+    if (board[position] !== "") return; // Se já tiver um valor, não faz nada
 
-    let box = document.querySelector(`[data-id="${position}"]`);
-    box.innerHTML = "X";
+    board[position] = currentPlayer;
+    this.innerHTML = currentPlayer;
+
+    if (checkWin()) {
+        setTimeout(() => location.reload(), 2000); // Reinicia o jogo após 2s
+        return;
+    }
+
+    currentPlayer = currentPlayer === "X" ? "O" : "X"; // Alterna jogador
 }
 
-//if 1, 2, 3 || 1, 5, 9 || 4, 5, 6 || ... === same value, return Victory();
-
-// boxes.forEach(box => {
-//     box.addEventListener("click", function () {
-//         const dataId = this.getAttribute("data-id");
-//         alert(dataId);
-//     })
-// })
-
 for (let i = 0; i < boxes.length; i++) {
-    boxes[i].addEventListener("click", markBox , false);
+    boxes[i].addEventListener("click", markBox);
 }

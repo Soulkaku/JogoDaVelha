@@ -5,16 +5,19 @@
         <h1 class="Title">Create your user!</h1>
             <form id="userForm">
                 <div class="create-user">
-                    <input type="text" id="userInput" class="username" placeholder="Type your name here" autocomplete="off">
+                    <div class="=inputButtons">
+                        <input type="text" id="userInput" class="username" placeholder="digite um nome aqui" autocomplete="off">
+                        <input type="text" id="roomInput" class="room" placeholder="digite a sala aqui">
+                    </div>
                     <button type="submit" id="submitUser" class="submitButton">
                         <img src="/assets/icons/login.svg" alt="submit">
-                    </button>
+                    </button> 
                 </div>
             </form>
     </div>
 </body>
 
-<script src="/js/create-session.js" defer></script>
+<script src="/js/userScript.js" defer></script>
 <script src="/socket.io/socket.io.js"></script>
 <link rel="stylesheet" href="/css/UserStyles.css" type="text/css">
 <link rel="icon" href="/assets/icons/favicon.ico" type="image/ico">

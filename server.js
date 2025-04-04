@@ -30,9 +30,9 @@ httpServer.listen(PORT, () => {
     console.log("listen! from localhost:3000");
 });
 
-io.on("connection", () => {
-    console.log("Client connected");
-})
+// io.on("connection", () => {
+//     console.log("Client connected");
+// })
 
 app.use(express.urlencoded({ extended: true}));
 
