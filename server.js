@@ -45,6 +45,7 @@ app.get('/', (req, res) => {
     // });
 });
 app.get('/game', (req, res) => {
+    const { room, user } = req.query;
     res.render("index", { layout: "game"});
 });
 
