@@ -17,7 +17,7 @@ h1 {
     color: white;
     font-weight: bold;
 }
-#user1 {
+#Your-User {
 
     top: 0%;
     left: 100vh;
@@ -25,7 +25,7 @@ h1 {
     font-weight: bold;
 }
 
-#user2 {
+#Enemy-User {
     position: relative;
     top: 0%;
     left: 100vh;
