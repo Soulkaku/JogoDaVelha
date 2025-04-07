@@ -11,17 +11,9 @@ form.addEventListener("submit", event => {
     if(!username) {
         alert("escreva um nome");
         return;
-
-    } else {
-            // sessionStorage.setItem("username", username);
-            // sessionStorage.setItem("room", room);
-
-            // createSession(username, room);
-
-            // document.getElementById("userInput").value = "";
-            // document.getElementById("roomInput").value = "";
-
-            window.location.href = `/game?room=${room}&username=${username}`;
     }
+
+    window.location.href = `/game?room=${room}&username=${username}`;
+
 });
 
