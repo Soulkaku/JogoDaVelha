@@ -11,7 +11,7 @@ const room = params.get("room");
 
 
 const yourName = document.getElementById("Your-User");
-yourName.textContent = `Ally: ${yourName}`;
+yourName.textContent = `Ally: ${name}`;
 
 const enemyName = document.getElementById("Enemy-User");
 socket.on("enemy-data", enemyName => {
