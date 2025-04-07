@@ -30,19 +30,11 @@ httpServer.listen(PORT, () => {
     console.log("listen! from localhost:3000");
 });
 
-// io.on("connection", () => {
-//     console.log("Client connected");
-// })
-
 app.use(express.urlencoded({ extended: true}));
 
 app.get('/', (req, res) => {
     res.render("index", {layout : "CreateUser"});
-    // io.sockets.on("connection", function(socket) {
-    //     socket.on("create", function(room) {
-    //         socket.join(room);
-    //     }) 
-    // });
+
 });
 app.get('/game', (req, res) => {
     res.render("index", { layout: "game"});
