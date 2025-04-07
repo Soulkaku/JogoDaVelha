@@ -7,49 +7,29 @@ io.on("connection", (socket) => {
         console.log(`User ${socket.id} disconnected, because: ${motivo}`);
     });
 
-    let roomId;
-    socket.on("create_user-find_room", (userData, room) => {
-        roomId = room;
-        console.log("userData" + JSON.stringify(userData), ", room: " + roomId);
+    socket.on("create-session", (sessionData) => {
+        console.log("username: " + sessionData.name);
+        console.log("sala: " + sessionData.room);
+
+        const roomInfo = io.sockets.adapter.rooms.get(sessionData.room);
+        const roomExists = roomInfo ? roomInfo.size : 0;
+
+        socket.join(sessionData.room);
+
+        if (roomExists === 0) {
+            console.log("no players in room " + sessionData.room);
+
+            
+            socket.to(sessionData.room).emit("new_room", sessionData.room);
+        } else {
+            socket.to(sessionData.room).emit("enemy-data", sessionData.name);
+        }
+
+
     });
 
-    socket.emit("enter-room", roomId);
+    socket.on("position-state", position => {
+        console.log("box " + position);
+    });
 
-//     // socket.on("create", function (gameRoom) {
-//     //     socket.join(gameRoom);
-//     // })
-    
-//     let username;
-    
-//     socket.on("create-user", (name) => {
-//         username = name;
-//         console.log(username);
-//         // socket.emit("alert-user", username.name);
-//         socket.emit("second-user", username.name);
-//     });
-
-
-//     // socket.on("dados-do-usuario", async (userData) => {
-//     //     username = userData.name
-//     //     console.log(username); //or (userData), returns {name: }
-//     //     socket.emit("username_fromX", username);
-//     // });
-
-//     socket.emit("user-data", async (username) => {
-//     });
-//     //estão conectadas
-//     function emitirNome(name) {
-//         socket.emit("firstName", (name) => {
-//             atualizarH2(name);
-//         })
-//     }
-//     // socket.on("play", (nombre) => {
-//     //     socket.broadcast.emit(console.log(nombre));
-//     // })
-   
 });
-
-
-// function redirectToGame(username) {
-    
-// }
