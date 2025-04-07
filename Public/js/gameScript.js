@@ -17,3 +17,16 @@ const enemyName = document.getElementById("Enemy-User");
 socket.on("enemy-data", enemyName => {
     enemyName.textContent = `enemy: ${enemyName}`;
 });
+
+
+
+const boxes = document.getElementsByClassName("box");
+
+for (let p = 0; p < boxes.length; p++) {
+    boxes[p].addEventListener("click", function() {
+        const position = this.getAttribute("data-id");
+
+        console.log(board[p]);
+
+    });
+}
