@@ -1,5 +1,5 @@
 import { createSession } from "./create-session.js";
-const socket = io();
+import { socket } from "./socket.js";
 
 const params = new URLSearchParams(window.location.search);
 
@@ -19,14 +19,26 @@ socket.on("enemy-data", enemyName => {
 });
 
 
-
 const boxes = document.getElementsByClassName("box");
 
 for (let p = 0; p < boxes.length; p++) {
     boxes[p].addEventListener("click", function() {
         const position = this.getAttribute("data-id");
 
-        console.log(board[p]);
+        let board = [   "1", "2", "3",
+                        "4", "5", "6",
+                        "7", "8", "9",
+        ];
 
+        console.log(board[p]);
+        const session = {
+            room : room,
+            position : board[p]
+        }
+        socket.emit("position", session);
     });
 }
+
+socket.on("positionClient", position => {
+    alert(position);
+});
