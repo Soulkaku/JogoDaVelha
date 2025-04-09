@@ -16,5 +16,12 @@ io.on("connection", (socket) => {
         console.log(`user ${username} with id ${socket.id} entered in room ${room}`);
 
         socket.broadcast.to(room).emit("enemy", username); 
-    })
+    });
+
+    socket.on("player-action", userPlay => {
+        const username = userPlay.name;
+        const play = userPlay.position;
+
+        console.log(userPlay);
+    });
 });
