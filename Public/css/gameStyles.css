@@ -26,7 +26,6 @@ h1 {
 }
 
 #Enemy-User {
-    position: relative;
     top: 0%;
     left: 100vh;
     display: flex;
