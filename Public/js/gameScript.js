@@ -1,4 +1,5 @@
 import { createSession } from "./create-session.js";
+import { playAction } from "./play-action.js";
 
 // import { socket } from "../socket.js";
 
@@ -17,20 +18,21 @@ const yourName = document.getElementById("Your-User");
 yourName.textContent = `Ally: ${name}`;
 
 
-const boxes = document.getElementsByClassName("box");
+const boxes = document.querySelectorAll(".box");
 
-let playerPlays = [];
+// let playerPlays = [];
 
-for(let p = 0; p < boxes.length; p++) {
-    boxes[p].addEventListener("click", () => {
-        const box = boxes[p];
+boxes.forEach(box => {
+    box.addEventListener('click', () => {
+        const boxPosition = box.getAttribute("id");
+        console.log(boxPosition);
+
         box.innerHTML = yourSymbol;
-        console.log(position[p]);
-        playerPlays.push(position[p]);
         
+        if(box.textContent != "") {
+            box.disabled = true;
+        }
 
-        // if(playerPlays.length === 3) {
-        //     console.log("wind)");
-        // }
+        playAction(name, boxPosition);
     });
-}
+});
