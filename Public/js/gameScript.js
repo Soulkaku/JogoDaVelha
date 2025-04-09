@@ -1,7 +1,10 @@
 import { createSession } from "./create-session.js";
-import { socket } from "./socket.js";
+
+// import { socket } from "../socket.js";
 
 const params = new URLSearchParams(window.location.search);
+const yourSymbol = sessionStorage.getItem("yourSymbol");
+
 
 const name = params.get("username");
 const room = params.get("room");
@@ -13,32 +16,21 @@ const room = params.get("room");
 const yourName = document.getElementById("Your-User");
 yourName.textContent = `Ally: ${name}`;
 
-const enemyName = document.getElementById("Enemy-User");
-socket.on("enemy-data", enemyName => {
-    enemyName.textContent = `enemy: ${enemyName}`;
-});
-
 
 const boxes = document.getElementsByClassName("box");
 
-for (let p = 0; p < boxes.length; p++) {
-    boxes[p].addEventListener("click", function() {
-        const position = this.getAttribute("data-id");
+let playerPlays = [];
 
-        let board = [   "1", "2", "3",
-                        "4", "5", "6",
-                        "7", "8", "9",
-        ];
+for(let p = 0; p < boxes.length; p++) {
+    boxes[p].addEventListener("click", () => {
+        const box = boxes[p];
+        box.innerHTML = yourSymbol;
+        console.log(position[p]);
+        playerPlays.push(position[p]);
+        
 
-        console.log(board[p]);
-        const session = {
-            room : room,
-            position : board[p]
-        }
-        socket.emit("position", session);
+        // if(playerPlays.length === 3) {
+        //     console.log("wind)");
+        // }
     });
 }
-
-socket.on("positionClient", position => {
-    alert(position);
-});
