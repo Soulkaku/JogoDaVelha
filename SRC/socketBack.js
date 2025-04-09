@@ -8,15 +8,13 @@ io.on("connection", (socket) => {
 
         console.log(sessionData);
     });
-    
-    socket.on("join-room", (room) => {
-        socket.join(room);
-        console.log(`${socket.id} entered in room ${room}`);
-    });
-    
-        socket.on("position", (session) => {
-            const room = session.room;
-            const position = session.position;
-            socket.broadcast.to(room).emit("positionClient", position);
-        });
+
+    socket.on("join-room", sessionData => {
+        const room = sessionData.room;
+        const username = sessionData.name;
+
+        console.log(`user ${username} with id ${socket.id} entered in room ${room}`);
+
+        socket.broadcast.to(room).emit("enemy", username); 
+    })
 });
