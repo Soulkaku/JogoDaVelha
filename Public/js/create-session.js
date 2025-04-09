@@ -1,5 +1,4 @@
-const socket = io();
-//create-session( {name, room}
+import { socket } from "../socket.js";
 
 function createSession(userInfo ,room) {
     const sessionData = {
@@ -8,6 +7,7 @@ function createSession(userInfo ,room) {
     };
 
     socket.emit("create-session", sessionData);
+    socket.emit("join-room", sessionData);
 };
 
 export { createSession };
