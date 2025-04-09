@@ -1,20 +1,26 @@
 <title>Start</title>
 
-<body>
+<body> 
+
     <div class="container">
-        <h1 class="Title">Create your user!</h1>
-            <form id="userForm">
-                <div class="create-user">
-                    <div class="=inputButtons">
-                        <input type="text" id="userInput" class="username" placeholder="digite um nome aqui" autocomplete="off">
-                        <input type="text" id="roomInput" class="room" placeholder="digite a sala aqui">
-                    </div>
-                    <button type="submit" id="submitUser" class="submitButton">
+        <h1 id="title"> Create Your User </h1>
+
+        <form id="userForm">
+            <div id="userData">
+                <button type="button" id="buttonChooseSymbol"> X </button>
+
+                <div class="input-buttons">
+                    <input type="text" id="userInput" class="username" placeholder="Digite seu nome aqui" autocomplete="off">
+                    <input type="text" id="roomInput" class="room" placeholder="Digite o nome de uma sala aqui">
+
+                    <button type="submit" id="submitButton" class="submit-data">
                         <img src="/assets/icons/login.svg" alt="submit">
-                    </button> 
+                    </button>
                 </div>
-            </form>
+            </div>
+        </form>
     </div>
+
 </body>
 
 <script src="/js/userScript.js" defer></script>
