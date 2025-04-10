@@ -5,20 +5,17 @@ import { playAction } from "./play-action.js";
 const params = new URLSearchParams(window.location.search);
 const yourSymbol = sessionStorage.getItem("yourSymbol");
 
-
 const name = params.get("username");
 const room = params.get("room");
 
-
     createSession(name, room);
-
 
 const yourName = document.getElementById("Your-User");
 yourName.textContent = `Ally: ${name}`;
 
 
 const boxes = document.querySelectorAll(".box");
-const allBoxes = document.getElementsByClassName("box");
+// const allBoxes = Array.prototype.slice.call(boxes);
 
 boxes.forEach(box => {
     box.addEventListener('click', () => {
@@ -30,7 +27,6 @@ boxes.forEach(box => {
         playAction(name, boxPosition, room);
 
         disableAll(true);
-    
     });
 });
 
@@ -47,41 +43,11 @@ socket.on("player-actionClient", (enemyPlay) => {
     box.innerHTML = enemySymbol;
 
     disableAll(false);
-    verifyContent;
 });
 
 
 function disableAll(state) {
     for (let b = 0; b < boxes.length; b++) {
         document.getElementById(b + 1).disabled = state;
-
-        // if(box.textContent != "") {
-        //     box.disabled = true;
-        // } else {
-        //     box.disabled = state;
-        // }
     };
-}
-
-function verifyContent() {
-    for (let b = 0; b < boxes.length; b++) {
-        const box = document.getElementById(b);
-
-        if(box != "") {
-            box.disabled = true;
-        }
-    }
-}
-
-
-
-
-// function disableOnlyTextOnes() {
-//     for (let b = 0; b < boxes.length; b++) {
-//         const box = document.getElementById(b+1);
-
-//         if(box.textContent != "") {
-//             box.disabled = true;
-//         };
-//     }
-// } 
+};
