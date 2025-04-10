@@ -1,7 +1,6 @@
+import { socket } from "../socket.js";
 import { createSession } from "./create-session.js";
 import { playAction } from "./play-action.js";
-
-// import { socket } from "../socket.js";
 
 const params = new URLSearchParams(window.location.search);
 const yourSymbol = sessionStorage.getItem("yourSymbol");
@@ -33,6 +32,28 @@ boxes.forEach(box => {
             box.disabled = true;
         }
 
-        playAction(name, boxPosition);
+        playAction(name, boxPosition, room);
     });
+});
+// socket.on("player-actionClient", (enemyPlay) => {
+    
+
+//     console.log(enemyPlay);
+// });
+
+socket.on("player-actionClient", (enemyPlay) => {
+    const box = document.getElementById(enemyPlay.position);
+    let enemySymbol;
+
+    if(yourSymbol === "X") {
+        enemySymbol = "O";
+    } else if (yourSymbol === "O") {
+        enemySymbol = "X";
+    }
+
+    box.innerHTML = enemySymbol;
+
+    if(box.innerHTML != "") {
+        box.disabled = true;
+    }
 });
