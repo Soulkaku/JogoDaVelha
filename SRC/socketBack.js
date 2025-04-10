@@ -1,5 +1,7 @@
 import io from "../server.js";
 
+
+
 io.on("connection", (socket) => {
     console.log(`Client ${socket.id} connected`);
 
@@ -15,13 +17,17 @@ io.on("connection", (socket) => {
 
         console.log(`user ${username} with id ${socket.id} entered in room ${room}`);
 
-        socket.broadcast.to(room).emit("enemy", username); 
+        socket.join(room);
     });
-
-    socket.on("player-action", userPlay => {
-        const username = userPlay.name;
-        const play = userPlay.position;
+    socket.on("player-action", (userPlay) => {
+        // const plyer = userPlay.player;
+        // const play = userPlay.position;
+        const room = userPlay.room;
 
         console.log(userPlay);
+
+        socket.to(room).emit("player-actionClient", userPlay);
     });
+
+    
 });
