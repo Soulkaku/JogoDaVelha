@@ -2,7 +2,7 @@
 
 - [x] Criar Repositorio
 - [x] Configurar o ambiente Node.js e Express 
-- [ ] Criar a estrutura do projeto  
+- [x] Criar a estrutura do projeto  
 - [x] Implementar o servidor WebSocket   
 - [ ] Implementar lógica do jogo (controle de jogadas e vencedor)  
 - [ ] Testar jogo localmente
