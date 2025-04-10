@@ -1,12 +1,11 @@
 import io from "../server.js";
 
 
-
 io.on("connection", (socket) => {
     console.log(`Client ${socket.id} connected`);
 
     socket.on("create-session", sessionData => {
-        const room = sessionData.room;
+        // const room = sessionData.room;
 
         console.log(sessionData);
     });
@@ -19,15 +18,16 @@ io.on("connection", (socket) => {
 
         socket.join(room);
     });
+
+
+
     socket.on("player-action", (userPlay) => {
-        // const plyer = userPlay.player;
-        // const play = userPlay.position;
+        
         const room = userPlay.room;
 
         console.log(userPlay);
-
         socket.to(room).emit("player-actionClient", userPlay);
-    });
 
-    
+        plays.push(userPlay.position);
+    });
 });
