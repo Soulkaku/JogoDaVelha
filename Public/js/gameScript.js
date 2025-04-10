@@ -18,8 +18,7 @@ yourName.textContent = `Ally: ${name}`;
 
 
 const boxes = document.querySelectorAll(".box");
-
-// let playerPlays = [];
+const allBoxes = document.getElementsByClassName("box");
 
 boxes.forEach(box => {
     box.addEventListener('click', () => {
@@ -28,18 +27,12 @@ boxes.forEach(box => {
 
         box.innerHTML = yourSymbol;
         
-        if(box.textContent != "") {
-            box.disabled = true;
-        }
-
         playAction(name, boxPosition, room);
+
+        disableAll(true);
+    
     });
 });
-// socket.on("player-actionClient", (enemyPlay) => {
-    
-
-//     console.log(enemyPlay);
-// });
 
 socket.on("player-actionClient", (enemyPlay) => {
     const box = document.getElementById(enemyPlay.position);
@@ -53,7 +46,42 @@ socket.on("player-actionClient", (enemyPlay) => {
 
     box.innerHTML = enemySymbol;
 
-    if(box.innerHTML != "") {
-        box.disabled = true;
-    }
+    disableAll(false);
+    verifyContent;
 });
+
+
+function disableAll(state) {
+    for (let b = 0; b < boxes.length; b++) {
+        document.getElementById(b + 1).disabled = state;
+
+        // if(box.textContent != "") {
+        //     box.disabled = true;
+        // } else {
+        //     box.disabled = state;
+        // }
+    };
+}
+
+function verifyContent() {
+    for (let b = 0; b < boxes.length; b++) {
+        const box = document.getElementById(b);
+
+        if(box != "") {
+            box.disabled = true;
+        }
+    }
+}
+
+
+
+
+// function disableOnlyTextOnes() {
+//     for (let b = 0; b < boxes.length; b++) {
+//         const box = document.getElementById(b+1);
+
+//         if(box.textContent != "") {
+//             box.disabled = true;
+//         };
+//     }
+// } 
