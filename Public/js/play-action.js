@@ -1,13 +1,16 @@
 import { socket } from "../socket.js";
 
-function playAction(username, play) {
+function playAction(username, box, room) {
 
     const userPlay = {
-        position : play,
-        name : username
+        position : box,
+        player : username,
+        room : room
+        
     };
     
     socket.emit("player-action", (userPlay));
 }
+
 
 export { playAction };
