@@ -9,6 +9,10 @@ button_chooseSymbol.addEventListener("click", e => {
     e.preventDefault();
 
     index = (index + 1) % symbols.length;
+
+    if (index == undefined) {
+        index = "x";
+    }
     button_chooseSymbol.textContent = symbols[index];
 
     sessionStorage.setItem("yourSymbol", symbols[index]);

@@ -13,9 +13,7 @@ const room = params.get("room");
 const yourName = document.getElementById("Your-User");
 yourName.textContent = `Ally: ${name}`;
 
-
 const boxes = document.querySelectorAll(".box");
-// const allBoxes = Array.prototype.slice.call(boxes);
 
 boxes.forEach(box => {
     box.addEventListener('click', () => {
@@ -55,8 +53,10 @@ function disableAll(state) {
 };
 
 function disableContent() {
-    for(let s = 0; s < boxes.length; s++) {
-        const box = document.getElementById(s+1).textContent;
-        console.log(Array.prototype.slice.call(box)); //#retorna box vou  colocar no figma
-    };
-};
+    for (let b = 0; b < boxes.length; b++) {
+        const box = document.getElementById(b + 1);
+        if(box.textContent.includes("X") || box.textContent.includes("O")) {
+            box.disabled = true;
+        }
+    }
+}
