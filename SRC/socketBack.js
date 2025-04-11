@@ -1,14 +1,14 @@
 import io from "../server.js";
-
+import { defineWinner, checkwin } from "./Controllers/verifyWin.js";
 
 io.on("connection", (socket) => {
     console.log(`Client ${socket.id} connected`);
 
-    socket.on("create-session", sessionData => {
-        // const room = sessionData.room;
+    // socket.on("create-session", sessionData => {
+    //     // const room = sessionData.room;
 
-        console.log(sessionData);
-    });
+    //     console.log(sessionData);
+    // });
 
     socket.on("join-room", sessionData => {
         const room = sessionData.room;
@@ -19,15 +19,15 @@ io.on("connection", (socket) => {
         socket.join(room);
     });
 
-
+    let clientMoves = [];
 
     socket.on("player-action", (userPlay) => {
-        
         const room = userPlay.room;
+        const position = userPlay.position;
+        
+        clientMoves.push(position);
+        defineWinner(userPlay.player, clientMoves);
 
-        console.log(userPlay);
         socket.to(room).emit("player-actionClient", userPlay);
-
-        plays.push(userPlay.position);
     });
 });
