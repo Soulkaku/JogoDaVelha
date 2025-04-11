@@ -27,6 +27,7 @@ boxes.forEach(box => {
         playAction(name, boxPosition, room);
 
         disableAll(true);
+
     });
 });
 
@@ -43,11 +44,19 @@ socket.on("player-actionClient", (enemyPlay) => {
     box.innerHTML = enemySymbol;
 
     disableAll(false);
+    disableContent();
 });
 
 
 function disableAll(state) {
     for (let b = 0; b < boxes.length; b++) {
         document.getElementById(b + 1).disabled = state;
+    };
+};
+
+function disableContent() {
+    for(let s = 0; s < boxes.length; s++) {
+        const box = document.getElementById(s+1).textContent;
+        console.log(Array.prototype.slice.call(box)); //#retorna box vou  colocar no figma
     };
 };
