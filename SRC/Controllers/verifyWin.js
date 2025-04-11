@@ -1,21 +1,17 @@
-// const board = [ 0, 1, 2,
-//                 3, 4, 5,
-//                 6, 7, 8
-//               ];
+const winPatterns = [ [1, 2, 3], [4, 5, 6], [7, 8, 9],
+                      [1, 4, 7], [2, 5, 8], [3, 6, 9], 
+                      [1, 3, 9], [3, 5, 7]  ];
 
 
-// const winPatterns = [board[0, 1, 2], board[3, 4, 5], board[6, 7, 8], board[0, 3, 6],
-//                      board[1, 4, 7], board[2, 5, 8], 
-//                      board[0, 4, 8], board[2, 4, 6]
-//                     ];
 
+function checkWin(moves) {
+    return winPatterns.some(combo => combo.every(move => moves.includes(move)));
+}
 
-function receivePosition(position, user) {
-    let markedBoxes = [];
-    markedBoxes.push(position); //receives a object with user and position
-
-    for (let i = 0; i < 4; i++) {
-        console.log(markedBoxes);
+function receivePosition(moves, user) {
+    console.log(user, moves);
+    if(checkWin(moves)) {
+        console.log(user + "winner");
     }
 }
 
