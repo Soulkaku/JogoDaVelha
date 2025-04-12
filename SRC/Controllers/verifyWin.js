@@ -21,14 +21,7 @@ function defineWinner(user, moves) {
 
     if(checkwin(movement)) {
         console.log("winner");
-    } else {
-    }
-    console.log("not detected");
-    
-        if(movement.length === 3) {
-            console.log(movement + "right");
-        }
-    
+    } 
 }
 
 
