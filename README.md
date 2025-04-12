@@ -6,11 +6,11 @@
 - [x] Implementar o servidor WebSocket   
 - [ ] Implementar lógica do jogo (controle de jogadas e vencedor)  
 - [ ] Testar jogo localmente
-- [ ] Hospedar o jogo online (Heroku, Vercel, etc.)
 
-- Front-end
+
+- Front-end 
 - Back-end
 
-- Criar Sala para jogo.
-- /create-session { name }
-- Marcar a jogado do jogador /play-action { user, jogada } 
+- Criar Sala para jogo. [x]
+- /create-session { name } [x]
+- Marcar a jogado do jogador /play-action { user, jogada } [x]
