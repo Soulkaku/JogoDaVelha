@@ -5,11 +5,6 @@ const winPatterns = [
         ['1', '3', '9'], ['3', '5', '7'], 
         ];
 
-
-// function checkWin(moves) {
-//     return winPatterns.some(combo => combo.every(move => moves.includes(move)));
-// }
-
 function checkwin(moves) {
     return winPatterns.some(winCombo => winCombo.every(movement => moves.includes(movement)));
 }
@@ -20,26 +15,8 @@ function defineWinner(user, moves) {
     console.log(user, moves);
 
     if(checkwin(movement)) {
-        console.log("winner");
+        console.log("winner: " + user);
     } 
 }
 
-
-// function defineWinner(user, moves) {
-//     let movement = moves;
-//     console.log(user, moves);
-
-//     if(checkwin(movement)) {
-//         console.log(user + "{ winner }");
-//     } else {
-//     }
-//     console.log("lost");
-// }
-export {checkwin, defineWinner };
-// function receivePosition(moves, user) {
-//     console.log(user, moves);
-//     if(checkWin(moves)) {
-//         console.log(user + "winner");
-//     }
-// }
-
+export { defineWinner };
