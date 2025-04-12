@@ -1,5 +1,5 @@
 import io from "../server.js";
-import { defineWinner } from "./Controllers/verifyWin.js";
+import { checkPosition, defineWinner,  } from "./Controllers/verifyWin.js";
 
 io.on("connection", (socket) => {
     console.log(`Client ${socket.id} connected`);
@@ -18,9 +18,13 @@ io.on("connection", (socket) => {
     socket.on("player-action", (userPlay) => {
         const room = userPlay.room;
         const position = userPlay.position;
-        
+
         userMoves.push(position);
-        defineWinner(userPlay.player, userMoves);
+        checkPosition(userPlay.player, userMoves);
+
+        if(defineWinner() != undefined) {
+            socket.to(room).emit("send-winner", defineWinner());
+        }
 
         socket.to(room).emit("player-actionClient", userPlay);
     });
