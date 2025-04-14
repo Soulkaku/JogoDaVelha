@@ -11,7 +11,7 @@ const room = params.get("room");
     createSession(name, room);
     
 const yourName = document.getElementById("Your-User");
-yourName.textContent = `Ally: ${name}`;
+yourName.textContent = `you: ${name}`;
 
 const boxes = document.querySelectorAll(".box");
 
@@ -75,7 +75,9 @@ socket.on("game-result", (winner) => {
             yourStatus.textContent = "Você ganhou";
         } else if(name != winner) {
             yourStatus.textContent = "Você perdeu";
-        }  //fazer o empate aqui
+        }  else if(boxes.textContent != "") {
+            yourStatus.textContent = "empate";
+        }
     }
 });
 
@@ -85,7 +87,7 @@ window.newGame = function() {
    history.back();
 }
 
-window.resetGame() = function() {
+window.resetGame = function() {
     dialog.close();
 
     for (let b = 0; b < boxes.length; b++) {
@@ -93,6 +95,9 @@ window.resetGame() = function() {
         box.textContent = "";
     }
 
-    socket.emit("clean-board", (true));
+    let resetWinner = "";
+
+    socket.emit("clean-board",  resetWinner);
+
 }
 
