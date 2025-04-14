@@ -6,17 +6,17 @@ const winPatterns = [
         ];
 
 let winner;
+let movements;
 
 function checkwin(moves) {
-    return winPatterns.some(winCombo => winCombo.every(movement => moves.includes(movement)));
+    return winPatterns.some(winCombo => winCombo.every(movement => moves.includes(movements)));
 }
 
-
 function checkPosition(user, moves) {
-    let movement = moves;
+    movements = moves;
     console.log(user, moves);
 
-    if(checkwin(movement)) {
+    if(checkwin(movements)) {
         winner = user;
         console.log(defineWinner()); 
     }
@@ -26,4 +26,15 @@ function defineWinner() {
     return winner;
 }
 
-export { checkPosition,  defineWinner};
+
+function resetWinner() {
+    winner = null;
+
+    resetBoard();
+}
+
+function resetBoard() {
+    return movements.lenght = 0;
+}
+
+export { checkPosition,  defineWinner, resetWinner};
