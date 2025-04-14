@@ -10,6 +10,9 @@ const room = params.get("room");
 
     createSession(name, room);
     
+    socket.on("return-creation", () => {
+        history.back();
+    });
 const yourName = document.getElementById("Your-User");
 yourName.textContent = `you: ${name}`;
 
@@ -84,7 +87,7 @@ socket.on("game-result", (winner) => {
 
 window.newGame = function() {
     dialog.close();
-   history.back();
+    history.back();
 }
 
 window.resetGame = function() {
