@@ -9,12 +9,12 @@ let winner;
 let movements;
 
 function checkwin(moves) {
-    return winPatterns.some(winCombo => winCombo.every(movement => moves.includes(movements)));
+    return winPatterns.some(winCombo => winCombo.every(movement => moves.includes(movement)));
 }
 
 function checkPosition(user, moves) {
     movements = moves;
-    console.log(user, moves);
+    console.log(user, movements);
 
     if(checkwin(movements)) {
         winner = user;
@@ -22,19 +22,15 @@ function checkPosition(user, moves) {
     }
 }
 
+function resetWinner(state) {
+    if(state == true) {
+        winner = null;
+        movements.lenght = 0;
+    }
+}
+
 function defineWinner() {
     return winner;
-}
-
-
-function resetWinner() {
-    winner = null;
-
-    resetBoard();
-}
-
-function resetBoard() {
-    return movements.lenght = 0;
 }
 
 export { checkPosition,  defineWinner, resetWinner};
