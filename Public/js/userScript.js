@@ -31,7 +31,7 @@ form.addEventListener("submit", event => {
         alert("escreva um nome");
         return;
     }
-
+    room.textContent = "";
     window.location.href = `/game?room=${room}&username=${username}`;
 
 });
