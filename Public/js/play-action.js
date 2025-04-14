@@ -5,12 +5,10 @@ function playAction(username, box, room) {
     const userPlay = {
         position : box,
         player : username,
-        room : room
-        
-    };
-    
-    socket.emit("player-action", (userPlay));
+        room : room       
+    }
+
+    socket.emit("player-action", ( userPlay ) );
 }
 
-
-export { playAction };
+export { playAction,  };
