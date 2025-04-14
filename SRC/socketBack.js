@@ -29,6 +29,14 @@ io.on("connection", (socket) => {
         }
 
         socket.to(room).emit("player-actionClient", userPlay);
+
+        socket.on("clean-board", (resetWinner) => {
+            userMoves.length = 0;
+            defineWinner() = resetWinner;
+            console.log(defineWinner());
+            checkPosition(userPlay.player, userMoves);
+        });
     });
+
 
 });
