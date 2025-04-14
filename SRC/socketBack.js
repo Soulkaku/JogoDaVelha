@@ -22,10 +22,13 @@ io.on("connection", (socket) => {
         userMoves.push(position);
         checkPosition(userPlay.player, userMoves);
 
-        if(defineWinner() != undefined) {
-            socket.to(room).emit("send-winner", defineWinner());
+        if(defineWinner() != null) {
+            console.log(defineWinner() + " this is the winner from socketBack.js");
+
+            io.in(room).emit("game-result", defineWinner());
         }
 
         socket.to(room).emit("player-actionClient", userPlay);
     });
+
 });
