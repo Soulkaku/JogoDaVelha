@@ -9,11 +9,12 @@ const name = params.get("username");
 const room = params.get("room");
 
     createSession(name, room);
-
+    
 const yourName = document.getElementById("Your-User");
 yourName.textContent = `Ally: ${name}`;
 
 const boxes = document.querySelectorAll(".box");
+
 
 boxes.forEach(box => {
     box.addEventListener('click', () => {
@@ -23,11 +24,10 @@ boxes.forEach(box => {
         box.innerHTML = yourSymbol;
         
         playAction(name, boxPosition, room);
-
         disableAll(true);
-
     });
 });
+
 
 socket.on("player-actionClient", (enemyPlay) => {
     const box = document.getElementById(enemyPlay.position);
@@ -40,6 +40,7 @@ socket.on("player-actionClient", (enemyPlay) => {
     }
 
     box.innerHTML = enemySymbol;
+
 
     disableAll(false);
     disableContent();
@@ -59,4 +60,39 @@ function disableContent() {
             box.disabled = true;
         }
     }
+};
+
+const dialog = document.querySelector("dialog");
+const yourStatus = document.getElementById("loserWinner");
+
+socket.on("game-result", (winner) => {
+    console.log(winner);
+    disableAll(true);
+    if(winner != "") {
+        dialog.showModal();
+
+        if(name === winner) {
+            yourStatus.textContent = "Você ganhou";
+        } else if(name != winner) {
+            yourStatus.textContent = "Você perdeu";
+        }  //fazer o empate aqui
+    }
+});
+
+
+window.newGame = function() {
+    dialog.close();
+   history.back();
 }
+
+window.resetGame() = function() {
+    dialog.close();
+
+    for (let b = 0; b < boxes.length; b++) {
+        const box = document.getElementById(b + 1);
+        box.textContent = "";
+    }
+
+    socket.emit("clean-board", (true));
+}
+
