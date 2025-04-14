@@ -8,9 +8,16 @@ io.on("connection", (socket) => {
         const room = sessionData.room;
         const username = sessionData.name;
 
-        console.log(`user ${username} with id ${socket.id} entered in room ${room}`);
+        const roomData = io.socket.adapter.rooms.get(room);
+        const usersConnected = roomData ? roomData : 0;
 
-        socket.join(room);
+        if ( usersConnected == 2){
+            socket.emit("return-creation");
+            
+        } else {
+            console.log(`user ${username} with id ${socket.id} entered in room ${room}`);
+            socket.join(room);
+        }
     });
 
     let userMoves = [];
