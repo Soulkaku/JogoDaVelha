@@ -1,24 +1,28 @@
-<title>Start</title>
+<title>TicTacToe: Create your user</title>
 
 <body> 
 
     <div class="container">
-        <h1 id="title"> Create Your User </h1>
+        
+            <h1 id="title"> Create your user </h1>
+        
+            <form id="userForm">
+                <div id="userData">
 
-        <form id="userForm">
-            <div id="userData">
-                <button type="button" id="buttonChooseSymbol"> X </button>
+                    <div class="input-buttons">
+                        <input type="text" id="userInput" class="username" placeholder="Digite seu nome aqui" autocomplete="off">
+                        <input type="text" id="roomInput" class="room" placeholder="Digite o nome de uma sala aqui">
+                    </div>
 
-                <div class="input-buttons">
-                    <input type="text" id="userInput" class="username" placeholder="Digite seu nome aqui" autocomplete="off">
-                    <input type="text" id="roomInput" class="room" placeholder="Digite o nome de uma sala aqui">
+                    <div class="choice-buttons">
+                        <button type="button" id="buttonChooseSymbol"> X </button>    
+                        <button type="submit" id="submitButton" class="submit-data">
+                            <img src="/assets/icons/login.svg" alt="submit">
+                        </button>
+                    </div>
 
-                    <button type="submit" id="submitButton" class="submit-data">
-                        <img src="/assets/icons/login.svg" alt="submit">
-                    </button>
                 </div>
-            </div>
-        </form>
+            </form>
     </div>
 
 </body>
