@@ -11,7 +11,7 @@ io.on("connection", (socket) => {
         const roomData = io.sockets.adapter.rooms.get(room);
         const usersConnected = roomData ? roomData.size : 0;
 
-        if ( usersConnected >= 2){
+        if ( usersConnected >= 1){
             socket.emit("return-creation");
             return;
 
