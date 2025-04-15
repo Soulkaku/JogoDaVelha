@@ -38,11 +38,15 @@ io.on("connection", (socket) => {
 
         socket.to(room).emit("player-actionClient", userPlay);
 
+        
         socket.on("clean-board", (phrase) => {
             userMoves = [];
             resetWinner(true);
             console.log(phrase);
-            checkPosition(userPlay.player, userMoves);
         });
+
+        socket.on("restart-board", () => {
+            socket.to(room).emit("enemy-response");
+        })
     });
 });
