@@ -14,10 +14,18 @@ io.on("connection", (socket) => {
         if ( usersConnected >= 2){
             socket.emit("return-creation");
             return;
-            
+
         } else {
+            console.log(usersConnected);
             console.log(`user ${username} with id ${socket.id} entered in room ${room}`);
             socket.join(room);
+
+            if(usersConnected > 0) {
+                console.log(`user ${username} with id ${socket.id} entered in room ${room}`);
+                socket.join(room);
+    
+                io.in(room).emit("start-game", false);
+            }
         }
     });
 
@@ -38,7 +46,7 @@ io.on("connection", (socket) => {
 
         socket.to(room).emit("player-actionClient", userPlay);
 
-        
+
         socket.on("clean-board", (phrase) => {
             userMoves = [];
             resetWinner(true);
@@ -47,6 +55,10 @@ io.on("connection", (socket) => {
 
         socket.on("restart-board", () => {
             socket.to(room).emit("enemy-response");
-        })
+        });
+
+        socket.on("new-game", () => {
+            socket.to(room).emit("new-game");
+        });
     });
 });
