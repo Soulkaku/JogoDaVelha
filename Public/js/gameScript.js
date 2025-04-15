@@ -2,6 +2,11 @@ import { socket } from "../socket.js";
 import { createSession } from "./create-session.js";
 import { playAction } from "./play-action.js";
 
+socket.on("return-creation", () => {
+    history.back();
+    alert("return!");
+});
+
 const params = new URLSearchParams(window.location.search);
 const yourSymbol = sessionStorage.getItem("yourSymbol");
 
@@ -13,17 +18,18 @@ const name = params.get("username");
 const room = params.get("room");
 
     createSession(name, room);
-    
-    socket.on("return-creation", () => {
-        history.back();
-        alert("return!");
-    });
 
 const yourName = document.getElementById("Your-User");
 yourName.textContent = `you: ${name}`;
 
+
 const boxes = document.querySelectorAll(".box");
 
+disableAll(true);
+
+socket.on("start-game", (state) => {
+    disableAll(state);
+}); 
 
 boxes.forEach(box => {
     box.addEventListener('click', () => {
@@ -55,6 +61,21 @@ socket.on("player-actionClient", (enemyPlay) => {
     disableContent();
 });
 
+socket.on("game-result", (winner) => {
+    console.log(winner);
+    disableAll(true);
+    if(winner != "") {
+        dialog.showModal();
+
+        if(name === winner) {
+            yourStatus.textContent = "Você ganhou";
+        } else if(name != winner) {
+            yourStatus.textContent = "Você perdeu";
+        }  else if(boxes.textContent != "") {
+            yourStatus.textContent = "empate";
+        }
+    }
+});
 
 function disableAll(state) {
     for (let b = 0; b < boxes.length; b++) {
@@ -74,26 +95,12 @@ function disableContent() {
 const dialog = document.querySelector("dialog");
 const yourStatus = document.getElementById("loserWinner");
 
-socket.on("game-result", (winner) => {
-    console.log(winner);
-    disableAll(true);
-    if(winner != "") {
-        dialog.showModal();
-
-        if(name === winner) {
-            yourStatus.textContent = "Você ganhou";
-        } else if(name != winner) {
-            yourStatus.textContent = "Você perdeu";
-        }  else if(boxes.textContent != "") {
-            yourStatus.textContent = "empate";
-        }
-    }
-});
-
 
 window.newGame = function() {
     dialog.close();
     history.back();
+
+    socket.emit("new-game");
 }
 
 window.resetGame = function() {
@@ -114,5 +121,7 @@ window.resetGame = function() {
         disableAll(false);
     });
 
+    socket.on("new-game", () => {
+        history.back();
+    });
 }
-
