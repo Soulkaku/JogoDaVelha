@@ -5,6 +5,10 @@ import { playAction } from "./play-action.js";
 const params = new URLSearchParams(window.location.search);
 const yourSymbol = sessionStorage.getItem("yourSymbol");
 
+if(yourSymbol == undefined) {
+    yourSymbol = "X";
+};
+
 const name = params.get("username");
 const room = params.get("room");
 
@@ -38,9 +42,9 @@ socket.on("player-actionClient", (enemyPlay) => {
     const box = document.getElementById(enemyPlay.position);
     let enemySymbol;
 
-    if(yourSymbol === "X") {
+    if(yourSymbol == "X") {
         enemySymbol = "O";
-    } else if (yourSymbol === "O") {
+    } else {
         enemySymbol = "X";
     }
 
@@ -100,8 +104,15 @@ window.resetGame = function() {
         box.textContent = "";
     }
 
-    const restartPhrase = `the game was restarted by ${name}`; 
+    const restartPhrase = `the game was restarted by ${name}`;
+    
+    
     socket.emit("clean-board", restartPhrase);
-    disableAll(false);
+
+    socket.emit("restart-board");
+    socket.on("enemy-response", () => {
+        disableAll(false);
+    });
+
 }
 
