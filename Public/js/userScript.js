@@ -10,14 +10,10 @@ button_chooseSymbol.addEventListener("click", e => {
 
     index = (index + 1) % symbols.length;
 
-    if (index == undefined) {
-        index = "x";
-    }
     button_chooseSymbol.textContent = symbols[index];
 
     sessionStorage.setItem("yourSymbol", symbols[index]);
 });
-
 
 const form = document.getElementById("userForm");
 
