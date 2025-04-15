@@ -12,7 +12,9 @@ const room = params.get("room");
     
     socket.on("return-creation", () => {
         history.back();
+        alert("return!");
     });
+
 const yourName = document.getElementById("Your-User");
 yourName.textContent = `you: ${name}`;
 
@@ -98,9 +100,8 @@ window.resetGame = function() {
         box.textContent = "";
     }
 
-    let resetWinner = "";
-
-    socket.emit("clean-board",  resetWinner);
-
+    const restartPhrase = `the game was restarted by ${name}`; 
+    socket.emit("clean-board", restartPhrase);
+    disableAll(false);
 }
 
