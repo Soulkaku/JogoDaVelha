@@ -1,5 +1,5 @@
 import io from "../server.js";
-import { checkPosition, defineWinner,  } from "./Controllers/verifyWin.js";
+import { checkPosition, defineWinner,  resetWinner,  } from "./Controllers/verifyWin.js";
 
 io.on("connection", (socket) => {
     console.log(`Client ${socket.id} connected`);
@@ -8,11 +8,12 @@ io.on("connection", (socket) => {
         const room = sessionData.room;
         const username = sessionData.name;
 
-        const roomData = io.socket.adapter.rooms.get(room);
-        const usersConnected = roomData ? roomData : 0;
+        const roomData = io.sockets.adapter.rooms.get(room);
+        const usersConnected = roomData ? roomData.size : 0;
 
-        if ( usersConnected == 2){
+        if ( usersConnected >= 2){
             socket.emit("return-creation");
+            return;
             
         } else {
             console.log(`user ${username} with id ${socket.id} entered in room ${room}`);
@@ -30,20 +31,18 @@ io.on("connection", (socket) => {
         checkPosition(userPlay.player, userMoves);
 
         if(defineWinner() != null) {
-            console.log(defineWinner() + " this is the winner from socketBack.js");
+            console.log(defineWinner() + ": this is the winner from socketBack.js");
 
             io.in(room).emit("game-result", defineWinner());
         }
 
         socket.to(room).emit("player-actionClient", userPlay);
 
-        socket.on("clean-board", (resetWinner) => {
-            userMoves.length = 0;
-            defineWinner() = resetWinner;
-            console.log(defineWinner());
+        socket.on("clean-board", (phrase) => {
+            userMoves = [];
+            resetWinner(true);
+            console.log(phrase);
             checkPosition(userPlay.player, userMoves);
         });
     });
-
-
 });
