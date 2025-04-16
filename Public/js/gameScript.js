@@ -3,12 +3,12 @@ import { createSession } from "./create-session.js";
 import { playAction } from "./play-action.js";
 
 socket.on("return-creation", () => {
+    alert("Sala cheia!");
     history.back();
-    alert("return!");
 });
 
 const params = new URLSearchParams(window.location.search);
-const yourSymbol = sessionStorage.getItem("yourSymbol");
+let yourSymbol = sessionStorage.getItem("yourSymbol");
 
 if(yourSymbol == undefined) {
     yourSymbol = "X";
@@ -22,14 +22,26 @@ const room = params.get("room");
 const yourName = document.getElementById("Your-User");
 yourName.textContent = `you: ${name}`;
 
+let rivalName = document.getElementById("Rival-User");
+
+// socket.on("your-rival", (rival) => {
+//     socket.emit("rival-name", name);
+
+//     rivalName.textContent = `rival: ${rival}`;
+// });
 
 const boxes = document.querySelectorAll(".box");
 
 disableAll(true);
 
 socket.on("start-game", (state) => {
-    disableAll(state);
-}); 
+    disableAll(state); 
+    socket.emit("your-rival", name);
+});
+
+socket.on("rival-name", (rival) => {
+    rivalName.textContent = `rival: ${rival}`;
+});
 
 boxes.forEach(box => {
     box.addEventListener('click', () => {
