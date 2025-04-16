@@ -42,4 +42,4 @@ Um jogo da velha multiplayer em tempo real desenvolvido para explorar o poder do
    ```bash
    http://localhost:3000
 
-<div align="center"> Feito por Thiago Gonçalves | ✉️ tangogitlab@gmail.com </div> ```
+<div align="center"> Feito por Thiago Gonçalves | ✉️ tangogitlab@gmail.com </div> 
