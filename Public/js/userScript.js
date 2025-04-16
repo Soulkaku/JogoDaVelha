@@ -1,5 +1,3 @@
-// import { createSession } from "./create-session.js";
-
 const button_chooseSymbol = document.getElementById("buttonChooseSymbol");
 
 let index = 0;
