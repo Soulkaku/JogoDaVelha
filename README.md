@@ -27,8 +27,8 @@ Um jogo da velha multiplayer em tempo real desenvolvido para explorar o poder do
 ## 📸 Preview
 <div>
 
-![Criação de usuario](Public/assets/images/screenshot.png)
-![Durante partida](Public/assets/images/screenshot.2.png)
+<img src="Public/assets/images/screenshot.png" alt="Criação de usuario" width="250"/>
+<img src="Public/assets/images/screenshot.2.png" alt="Durante partida" width="250"/>
 
 </div>
 
