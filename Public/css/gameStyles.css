@@ -2,12 +2,13 @@ body {
     font-family: "poppins";
     /* background-color: black; */
     display: flex;
-    text-align: center;
+
     height: 100vh;
     margin: 0;
 }
 
 .container {
+    text-align: center;
     /* height: 70vh; */
 
     display: flex;
@@ -18,30 +19,6 @@ body {
 h1 {
     color: black;
     text-transform: uppercase;
-}
-
-/* #players {
-    display: inline-block;
-
-    top: 0;
-    flex-direction: row;
-} */
-
-#Your-User {
-    display: inline-block;
-
-    top: 0%;
-    left: 100vh;
-    color: black;
-}
-
-#Enemy-User {
-    display: inline-block;
-
-    top: 0%;
-    left: 100vh;
-    display: flex;
-    color: black;
 }
 
 .game {
@@ -70,6 +47,11 @@ h1 {
     width: 19vmin;
     height: 19vmin;
 
+}
+
+
+.box:disabled {
+    cursor: not-allowed;
 }
 
 dialog {
