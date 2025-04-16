@@ -24,12 +24,6 @@ yourName.textContent = `you: ${name}`;
 
 let rivalName = document.getElementById("Rival-User");
 
-// socket.on("your-rival", (rival) => {
-//     socket.emit("rival-name", name);
-
-//     rivalName.textContent = `rival: ${rival}`;
-// });
-
 const boxes = document.querySelectorAll(".box");
 
 disableAll(true);
@@ -68,7 +62,6 @@ socket.on("player-actionClient", (enemyPlay) => {
 
     box.innerHTML = enemySymbol;
 
-
     disableAll(false);
     disableContent();
 });
@@ -89,24 +82,8 @@ socket.on("game-result", (winner) => {
     }
 });
 
-function disableAll(state) {
-    for (let b = 0; b < boxes.length; b++) {
-        document.getElementById(b + 1).disabled = state;
-    };
-};
-
-function disableContent() {
-    for (let b = 0; b < boxes.length; b++) {
-        const box = document.getElementById(b + 1);
-        if(box.textContent.includes("X") || box.textContent.includes("O")) {
-            box.disabled = true;
-        }
-    }
-};
-
 const dialog = document.querySelector("dialog");
 const yourStatus = document.getElementById("loserWinner");
-
 
 window.newGame = function() {
     dialog.close();
@@ -137,3 +114,18 @@ window.resetGame = function() {
         history.back();
     });
 }
+
+function disableAll(state) {
+    for (let b = 0; b < boxes.length; b++) {
+        document.getElementById(b + 1).disabled = state;
+    };
+};
+
+function disableContent() {
+    for (let b = 0; b < boxes.length; b++) {
+        const box = document.getElementById(b + 1);
+        if(box.textContent.includes("X") || box.textContent.includes("O")) {
+            box.disabled = true;
+        }
+    }
+};
