@@ -4,30 +4,36 @@ import { checkPosition, defineWinner,  resetWinner,  } from "./Controllers/verif
 io.on("connection", (socket) => {
     console.log(`Client ${socket.id} connected`);
 
+
     socket.on("join-room", sessionData => {
+
+        
         const room = sessionData.room;
         const username = sessionData.name;
+        
+        
 
         const roomData = io.sockets.adapter.rooms.get(room);
         const usersConnected = roomData ? roomData.size : 0;
 
-        if ( usersConnected >= 1){
+        if ( usersConnected >= 2) {
             socket.emit("return-creation");
             return;
 
-        } else {
-            console.log(usersConnected);
-            console.log(`user ${username} with id ${socket.id} entered in room ${room}`);
-            socket.join(room);
+        } 
+        
+        socket.join(room);
+        console.log(`user ${username} with id ${socket.id} entered in room ${room}`);
 
-            if(usersConnected > 0) {
-                console.log(`user ${username} with id ${socket.id} entered in room ${room}`);
-                socket.join(room);
-    
+        if(usersConnected === 1) {
                 io.in(room).emit("start-game", false);
-            }
         }
+
+        socket.on("your-rival", (rival) => {
+            socket.to(room).emit("rival-name", rival);
+        });
     });
+
 
     let userMoves = [];
 
