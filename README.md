@@ -24,6 +24,14 @@ Um jogo da velha multiplayer em tempo real desenvolvido para explorar o poder do
 - **Comunicação**: Socket.io para conexões WebSocket
 - **Estilização**: CSS
 
+## 📸 Preview
+<div>
+
+![Criação de usuario](Public/assets/images/screenshot.png)
+![Durante partida](Public/assets/images/screenshot.2.png)
+
+</div>
+
 ## 🚀 Como Executar
 
 1. Clone o repositório:
