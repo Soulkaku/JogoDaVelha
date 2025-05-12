@@ -41,7 +41,7 @@ Um jogo da velha multiplayer em tempo real desenvolvido para explorar o poder do
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/jogo-da-velha-websockets.git
+   https://github.com/Soulkaku/JogoDaVelha.git
 
 2. Instale as dependências:
    ```bash
